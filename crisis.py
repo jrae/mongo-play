@@ -3,6 +3,7 @@ from bson.json_util import dumps
 import json
 import  re
 import pymongo
+from pymongo import GEO2D
 from bottle import run,route,static_file,request,get,post, response
 
 
@@ -11,6 +12,7 @@ from bottle import run,route,static_file,request,get,post, response
 connection_string = "mongodb://localhost:27017"
 connection = pymongo.MongoClient(connection_string)
 database = connection.mongosizer
+database.asset.ensure_index([("geometry.coordinates", GEO2D)])
 
 @post('/square')
 def square():
@@ -20,7 +22,7 @@ def square():
 
 @route('/assets')
 def getAssets():
-    assets = [];
+    assets = []
     for v in xrange(1,5):
         veh = { 'Name' : "Vehicle" + str(v) }
         assets.append(veh)
