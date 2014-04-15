@@ -168,7 +168,12 @@ function CrisisCtrl($scope, $http, $timeout) {
                         function(ev) {
                             return console.log("coords", ev.target.getLatLng(),
                                     asset._id);
-                        }).addTo(m);
+                        }).on('dragend', function(ev) {
+						              var longLat = ev.target.getLatLng();
+						              asset.geometry.coordinates[0] = longLat.lng;
+						              asset.geometry.coordinates[1] = longLat.lat;
+						              $scope.update(asset);
+		          }).addTo(m);
             },
             re_bindEvents : function() {
                 return $('.result').each(function() {
