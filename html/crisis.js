@@ -63,9 +63,6 @@ function CrisisCtrl($scope, $http, $timeout) {
                 var _this;
                 _this = this;
                 console.log('bind events');
-                m.on('click', function(e) {
-                    return _this.dropPin(e.latlng);
-                });
                 m.on('load', function(e) {
                     return _this.updateCoords(m.getCenter());
                 });
@@ -83,32 +80,6 @@ function CrisisCtrl($scope, $http, $timeout) {
                         maxZoom : 16
                     });
                 });
-            },
-            dropPin : function(loc) {
-                var _this;
-                _this = this;
-                console.log("dropping pin at pos:", loc);
-                if (marker === null) {
-                    marker = new L.marker(loc, {
-                        draggable : true,
-                        bounceOnAdd : true,
-                        clickable : true
-                    });
-                    marker.on('dragend', function(ev) {
-                        return console.log("coords", ev.target.getLatLng());
-                    });
-                    marker.on('click', function(ev) {
-                        return console.log("coords", ev.target.getLatLng());
-                    });
-
-                    marker.addTo(m);
-                    _this.updateCoords(loc);
-                } else {
-                    marker.setLatLng(loc);
-                    _this.updateCoords(loc);
-                }
-                return $('.create-button').removeClass('is-disabled').text(
-                        'Start report');
             },
             updateCoords : function(coords) {
                 var url, _this;
