@@ -32,7 +32,7 @@ for asset in assets:
     if(attribs['Status'] == 'Tasked'):
         attribs['TaskedUntil'] = random.choice(['12:00','12:30','12:45','13:00','13:15'])
     asset['attributes'] = attribs
-    
+
     req = urllib2.Request("http://0.0.0.0:8080/asset", json.dumps(asset), {"Content-Type": "application/json"})
     res = urllib2.urlopen(req)
     assert res.getcode() == 201
