@@ -96,11 +96,11 @@ $(function() {
         return "?lat=" + latitude + "&long=" + longitude;
       },
       categoryIcon: function(category) {
-        var icon, iconUrl;
-        iconUrl = null;
+        var icon, iconName = null, markerColor = null;
         switch (category) {
-          case "Tree(s) Down":
-            iconUrl = "tree";
+          case "book":
+            iconName = "book";
+			markerColor = 'red';
             break;
           case "Floods":
             iconUrl = "flooding";
@@ -120,10 +120,10 @@ $(function() {
           default:
             iconUrl = "default";
         }
-        icon = L.icon({
-          iconUrl: "<%= asset_path('images/" + iconUrl + ".png" + "') %>",
-          iconRetinaUrl: "<%= asset_path('images/" + iconUrl + "@2x.png" + "') %>",
-          iconSize: [40, 40]
+        icon = L.AwesomeMarkers.icon({
+		  icon: iconName,
+		  markerColor: markerColor,
+		  prefix: 'fa'
         });
         return icon;
       },
@@ -175,6 +175,9 @@ $(function() {
         });
       }
     };
+
+	L.marker([51.5244,-0.08467], {icon: map.categoryIcon('book')}).addTo(m);
+
     return map.init();
   }
 });
