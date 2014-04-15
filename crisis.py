@@ -26,11 +26,11 @@ def getAssets():
     for v in xrange(1,5):
         status=random.choice(['tasked','free','issue'])
         veh = { 'Name' : "Vehicle" + str(v),
-                'Location' : { 'lat': 0, 'long': 53},
+                'Location' : { 'lat': 51.52487262675978, 'long': -0.08617401123046874},
                 'Callsign' : 'SC' + str(v),
                 'status' : status,
                 'Type' : 'Land Rover 110' }
-        
+
         assets.append(veh)
     print assets
     return {'result': assets}
