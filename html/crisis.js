@@ -12,24 +12,26 @@ function CrisisCtrl($scope, $http, $timeout) {
             $scope.result = data.result;
         })
     }
-	
-	$scope.getAssets = function(e) {
-		$http.get('/asset').success(function(data) {
-			$scope.assets = data.results;
-	  for (_i = 0, _len = $scope.assets.length; _i < _len; _i++) {
-		asset = $scope.assets[_i];
-		console.info(asset);
-		map.render_enquiry(asset);
-	  }
-		})
-	}
 
-	$scope.update = function(data)
-	{
-		$http.post('/update_asset', data).success(function() {
-			console.log('updated asset');
-		})
-	}
+		$scope.getAssets = function(e) {
+			$http.get('/asset').success(function(data) {
+				$scope.assets = data.results;
+			  for (_i = 0, _len = $scope.assets.length; _i < _len; _i++) {
+					asset = $scope.assets[_i];
+					console.info(asset);
+					if (asset.geometry != null){
+						map.render_enquiry(asset);
+					}
+			  }
+			})
+		}
+
+		$scope.update = function(data)
+		{
+			$http.post('/update_asset', data).success(function() {
+				console.log('updated asset');
+			})
+		}
 
     if ($("#map-container").length > 0) {
 
@@ -60,9 +62,6 @@ function CrisisCtrl($scope, $http, $timeout) {
                 var _this;
                 _this = this;
                 console.log('bind events');
-                m.on('click', function(e) {
-                    return _this.dropPin(e.latlng);
-                });
                 m.on('load', function(e) {
                     return _this.updateCoords(m.getCenter());
                 });
@@ -80,32 +79,6 @@ function CrisisCtrl($scope, $http, $timeout) {
                         maxZoom : 16
                     });
                 });
-            },
-            dropPin : function(loc) {
-                var _this;
-                _this = this;
-                console.log("dropping pin at pos:", loc);
-                if (marker === null) {
-                    marker = new L.marker(loc, {
-                        draggable : true,
-                        bounceOnAdd : true,
-                        clickable : true
-                    });
-                    marker.on('dragend', function(ev) {
-                        return console.log("coords", ev.target.getLatLng());
-                    });
-                    marker.on('click', function(ev) {
-                        return console.log("coords", ev.target.getLatLng());
-                    });
-
-                    marker.addTo(m);
-                    _this.updateCoords(loc);
-                } else {
-                    marker.setLatLng(loc);
-                    _this.updateCoords(loc);
-                }
-                return $('.create-button').removeClass('is-disabled').text(
-                        'Start report');
             },
             updateCoords : function(coords) {
                 var url, _this;
@@ -169,8 +142,10 @@ function CrisisCtrl($scope, $http, $timeout) {
 				marker.on(
 						'dragend',
 						function(ev) {
-							return console.log("coords", ev.target.getLatLng(),
-									asset._id);
+							var longLat = ev.target.getLatLng();
+						              asset.geometry.coordinates[0] = longLat.lng;
+						              asset.geometry.coordinates[1] = longLat.lat;
+						              $scope.update(asset);
 						});
 				// marker.bindToLabel('test label');
 				marker.addTo(m);
