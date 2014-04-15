@@ -50,12 +50,38 @@ def asset_search():
     response.content_type = "application/json"
     return response
 
+@get('/asset/<id>')
+def get_asset(id):
+    response.body = dumps(database.asset.find_one({"id": id}))
+    response.content_type = "application/json"
+    return response
+
 @post('/asset')
 def asset_create():
     asset = request.json
-    database.asset.insert(asset)
-    response.set_header('Location', "/asset/%s" % asset['_id'])
+    database.asset.update({"id" : asset['id']}, asset, upsert=True)
+    response.set_header('Location', "/asset/%s" % asset['id'])
     response.status = 201
+    return response
+
+@post("/category")
+def category_create():
+    category = request.json
+    database.category.update({"id" : category['id']}, category, upsert=True)
+    response.set_header('Location', "/category/%s" % category['id'])
+    response.status = 201
+    return response
+
+@get("/category")
+def categories():
+    response.body = dumps({"results" : [dict(record) for record in database.category.find()]})
+    response.content_type = "application/json"
+    return response
+
+@get("/category/<id>")
+def get_category(id):
+    response.body = dumps(database.category.find_one({"id": id}))
+    response.content_type = "application/json"
     return response
 
 #Anything in html directory send as is
