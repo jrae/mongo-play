@@ -148,45 +148,6 @@ function CrisisCtrl($scope, $http, $timeout) {
 				var url, _this;
 				_this = this;
 
-<<<<<<< HEAD
-				$scope.getAssets();
-			},
-			render_enquiry : function(asset) {
-				var _this;
-				_this = this;
-				var marker = L.marker(
-						[ asset.geometry.coordinates[1],
-								asset.geometry.coordinates[0] ], {
-							icon : _this.categoryIcon(asset.type, 'red'),
-							draggable : true,
-							clickable : true
-						});
-				marker.on(
-						'dragend',
-						function(ev) {
-							return console.log("coords", ev.target.getLatLng(),
-									asset._id);
-						});
-				marker.bindToLabel('test label');
-				marker.addTo(m);
-			},
-			re_bindEvents : function() {
-				return $('.result').each(function() {
-					console.log($(this));
-					return $(this).magnificPopup({
-						type : 'ajax',
-						ajax : {
-							settings : {
-								url : "/enquiries/" + $(this).attr('id'),
-								type : 'GET'
-							}
-						}
-					});
-				});
-			}
-		};
-
-=======
       $scope.getAssets();
 	    },
 	    render_enquiry: function(asset) {
@@ -218,7 +179,6 @@ function CrisisCtrl($scope, $http, $timeout) {
 	      });
 	    }
 	  };
->>>>>>> b164a8345f8fda24e78264885a206e47641116d3
 		map.init();
 	}
 }
