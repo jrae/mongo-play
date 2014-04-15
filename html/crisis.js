@@ -12,18 +12,7 @@ function CrisisCtrl($scope, $http, $timeout) {
             $scope.result = data.result;
         })
     }
-
-<<<<<<< HEAD
-    $scope.getAssets = function(e) {
-        $http.get('/asset').success(function(data) {
-            $scope.assets = data.results;
-            for (_i = 0, _len = $scope.assets.length; _i < _len; _i++) {
-                asset = $scope.assets[_i];
-                map.render_enquiry(asset);
-            }
-        })
-    }
-=======
+	
 	$scope.getAssets = function(e) {
 		$http.get('/asset').success(function(data) {
 			$scope.assets = data.results;
@@ -41,7 +30,6 @@ function CrisisCtrl($scope, $http, $timeout) {
 			console.log('updated asset');
 		})
 	}
->>>>>>> 42d56b8c89fbb1e4675e34c9673c7a405a04a80c
 
     if ($("#map-container").length > 0) {
 
@@ -145,60 +133,6 @@ function CrisisCtrl($scope, $http, $timeout) {
             },
 
             categoryIcon : function(iconName, iconColor) {
-<<<<<<< HEAD
-                var iconDictionary = {
-                    vehicle : 'truck',
-                    person : 'male'
-                }, faIcon;
-                faIcon = iconDictionary[iconName] || faIcon;
-                return L.AwesomeMarkers.icon({
-                    icon : faIcon,
-                    markerColor : iconColor,
-                    prefix : 'fa'
-                });
-            },
-
-            request_local_enquiries : function() {
-                var url, _this;
-                _this = this;
-
-                $scope.getAssets();
-            },
-            render_enquiry : function(asset) {
-                var _this;
-                _this = this;
-                L.marker(
-                        [ asset.geometry.coordinates[1],
-                                asset.geometry.coordinates[0] ], {
-                            icon : _this.categoryIcon(asset.type, 'red'),
-                            draggable : true,
-                            clickable : true
-                        }).on(
-                        'dragend',
-                        function(ev) {
-                            return console.log("coords", ev.target.getLatLng(),
-                                    asset._id);
-                        }).addTo(m);
-            },
-            re_bindEvents : function() {
-                return $('.result').each(function() {
-                    console.log($(this));
-                    return $(this).magnificPopup({
-                        type : 'ajax',
-                        ajax : {
-                            settings : {
-                                url : "/enquiries/" + $(this).attr('id'),
-                                type : 'GET'
-                            }
-                        }
-                    });
-                });
-            }
-        };
-
-        map.init();
-    }
-=======
 				var iconDictionary = {
 			    		vehicle : 'truck',
 				    	person : 'male'
@@ -258,5 +192,4 @@ function CrisisCtrl($scope, $http, $timeout) {
 		};
 		map.init();
 	}
->>>>>>> 42d56b8c89fbb1e4675e34c9673c7a405a04a80c
 }
