@@ -27,11 +27,13 @@ function CrisisCtrl($scope, $http, $timeout) {
 	$scope.getAssets = function(e) {
 		$http.get('/asset').success(function(data) {
 			$scope.assets = data.results;
-	  for (_i = 0, _len = $scope.assets.length; _i < _len; _i++) {
-		asset = $scope.assets[_i];
-		console.info(asset);
-		map.render_enquiry(asset);
-	  }
+		  for (_i = 0, _len = $scope.assets.length; _i < _len; _i++) {
+				asset = $scope.assets[_i];
+				console.info(asset);
+				if (asset.geometry != null){
+					map.render_enquiry(asset);
+				}
+		  }
 		})
 	}
 
