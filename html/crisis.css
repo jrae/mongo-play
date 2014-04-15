@@ -6,6 +6,17 @@
 	overflow-y: scroll;
 }
 
+#popup {
+    background:white;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+	width: 50%;
+	height: 50%;
+	z-index: 100;
+	border: 1px;
+	box-shadow:rgba(0,0,0,0.5) 0px 0px 5px; 
+}
 #map {
 	background:white;
 	width: 75%;

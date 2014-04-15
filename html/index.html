@@ -34,7 +34,23 @@
   </head>
 
   <body>
+  
+ 
+    
 	<div id="inventory" ng-controller="CrisisCtrl">
+    
+      <div id="popup">
+   
+   <table>
+   <tr ng-repeat="(key,value) in selected.attributes">
+   
+    <td>{{key}} </td> <td> <input ng-model="selected.attributes[key]"></input></td>
+     </tr>
+     </table>
+      <button ng-click="save_changes()">Save</button>
+      <button ng-click="abandon_changes()">Abandon</button>
+    </div>
+    
 <!--
 	A Simple Variable: {{example}}<br></br>
 	<input ng-model="someInput"></input>
@@ -43,7 +59,8 @@
 	{{result}}<br></br>
 	<button ng-click="getAssets();"> Get Assets </button>
 -->
-
+   
+    
 	<div class='asset' ng-repeat="asset in assets">
 	<div class="{{asset.attributes.Status}}" >
 	<div class='asset'>
