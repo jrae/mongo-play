@@ -153,37 +153,43 @@ function CrisisCtrl($scope, $http, $timeout) {
 			request_local_enquiries : function() {
 				var url, _this;
 				_this = this;
-      $scope.getAssets();
-	    },
-	    render_enquiry: function(asset) {
-	      var _this;
-	      _this = this;
-	      L.marker([asset.geometry.coordinates[1], asset.geometry.coordinates[0]], {
-	        icon: _this.categoryIcon(asset.type, 'red'),
-	        draggable: true,
-	        clickable: true
-	      }).on('dragend', function(ev) {
-	      	var longLat = ev.target.getLatLng();
-	      	asset.geometry.coordinates[0] = longLat.lng;
-	      	asset.geometry.coordinates[1] = longLat.lat;
-	      	$scope.update(asset);
-	      }).addTo(m);
-	    },
-	    re_bindEvents: function() {
-	      return $('.result').each(function() {
-	        console.log($(this));
-	        return $(this).magnificPopup({
-	          type: 'ajax',
-	          ajax: {
-	            settings: {
-	              url: "/enquiries/" + $(this).attr('id'),
-	              type: 'GET'
-	            }
-	          }
-	        });
-	      });
-	    }
-	  };
+
+				$scope.getAssets();
+			},
+			render_enquiry : function(asset) {
+				var _this;
+				_this = this;
+				var marker = L.marker(
+						[ asset.geometry.coordinates[1],
+								asset.geometry.coordinates[0] ], {
+							icon : _this.categoryIcon(asset.type, 'red'),
+							draggable : true,
+							clickable : true
+						});
+				marker.on(
+						'dragend',
+						function(ev) {
+							return console.log("coords", ev.target.getLatLng(),
+									asset._id);
+						});
+				// marker.bindToLabel('test label');
+				marker.addTo(m);
+			},
+			re_bindEvents : function() {
+				return $('.result').each(function() {
+					console.log($(this));
+					return $(this).magnificPopup({
+						type : 'ajax',
+						ajax : {
+							settings : {
+								url : "/enquiries/" + $(this).attr('id'),
+								type : 'GET'
+							}
+						}
+					});
+				});
+			}
+		};
 		map.init();
 	}
 }
