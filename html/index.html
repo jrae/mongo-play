@@ -47,11 +47,16 @@
 	<div class='asset' ng-repeat="asset in assets"> 
 	<div class="{{asset.attributes.Status}}" >
 	<div class='asset'>
+     <div class="icons">
+     <div ng-repeat="(key,value) in asset.flags">
+     <span class="flag" ng-if="value" >{{key}}</span>
+     </div>
 	<div ng-repeat="(key,value) in asset.attributes">
 	
 	 {{key}} : {{value}}
 	
 	 </div>
+    
 	</div>
 	</div>
 	 </div>

@@ -23,6 +23,7 @@ categories = [
 vehno = 20
 for asset in assets:
     attribs = {}
+    flags = {}
     attribs['VehicleID'] = vehno
     vehno = vehno + 1
     attribs["Callsign"] = 'M' + str(random.randint(0,6)) +  chr(random.randint(1, 25) + 65)  + chr(random.randint(1, 25) + 65)   + chr(random.randint(1, 25) + 65)
@@ -31,7 +32,12 @@ for asset in assets:
     attribs['Status'] = random.choice(['Available','Tasked','Unserviceable'])
     if(attribs['Status'] == 'Tasked'):
         attribs['TaskedUntil'] = random.choice(['12:00','12:30','12:45','13:00','13:15'])
+        if random.randint(1,3) == 1:
+            flags['Overdue']=True;
+        if random.randint(1,3) == 1:
+            flags['Question?']=True;
     asset['attributes'] = attribs
+    asset['flags'] = flags
     
     req = urllib2.Request("http://0.0.0.0:8080/asset", json.dumps(asset), {"Content-Type": "application/json"})
     res = urllib2.urlopen(req)

@@ -26,8 +26,16 @@
 
 .Tasked {
 	background: orange;
+	
 }
 
+.flag { background: #700000;
+color: white;
+padding: 2px;
+margin-botton: 4px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+        }
 .Available { background: green }
 
 .OOC { background: red }
