@@ -16,7 +16,8 @@ function CrisisCtrl($scope, $http, $timeout) {
 
 
     $scope.save_changes = function(e) {
-
+    	$scope.update($scope.selected);
+    	$("#popup").hide();
     }
 
     $scope.abandon_changes = function(e) {
