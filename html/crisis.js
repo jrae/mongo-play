@@ -30,7 +30,7 @@ function CrisisCtrl($scope, $http, $timeout) {
 		})
 	}
 
-if ($("#map-container").length > 0) {
+	if ($("#map-container").length > 0) {
 
 		m = L.map('map-container', {
 			detectRetina : true
@@ -179,7 +179,6 @@ if ($("#map-container").length > 0) {
 	      });
 	    }
 	  };
-
 		map.init();
 	}
 }
