@@ -5,7 +5,7 @@ import  re
 import pymongo
 from pymongo import GEO2D
 from bottle import run,route,static_file,request,get,post, response
-
+import random;
 
 #Connect to local mongoDB
 
@@ -24,7 +24,13 @@ def square():
 def getAssets():
     assets = []
     for v in xrange(1,5):
-        veh = { 'Name' : "Vehicle" + str(v) }
+        status=random.choice(['tasked','free','issue'])
+        veh = { 'Name' : "Vehicle" + str(v),
+                'Location' : { 'lat': 0, 'long': 53},
+                'Callsign' : 'SC' + str(v),
+                'status' : status,
+                'Type' : 'Land Rover 110' }
+        
         assets.append(veh)
     print assets
     return {'result': assets}
