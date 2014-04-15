@@ -2,7 +2,7 @@ import urllib2, json
 import random
 
 assets = [
-{"_id" : "vehicle1", "type" : "vehicle", "geometry" : { "type" : "point", "coordinates" : [-0.08617401123046874, 51.52487262675978]}},
+{"_id" : "vehicle1", "type" : "vehicle", "geometry" : { "type" : "point", "coordinates" : [-0.08617401123046874, 51.52487262675978]}, "containing" : ["John", "Paul", "George", "Ringo"]},
 {"_id" : "vehicle2", "type" : "vehicle", "geometry" : { "type" : "point", "coordinates" : [-0.07836341857910156, 51.52528648801461]}},
 {"_id" : "vehicle3", "type" : "vehicle", "geometry" : { "type" : "point", "coordinates" : [-0.08703231811523438, 51.52284331713511]}},
 {"_id" : "vehicle4", "type" : "vehicle", "geometry" : { "type" : "point", "coordinates" : [-0.08934974670410155, 51.52599404854359]}},
@@ -12,7 +12,11 @@ assets = [
 {"_id" : "vehicle8", "type" : "vehicle", "geometry" : { "type" : "point", "coordinates" : [-0.08359909057617188, 51.52212235641814]}},
 {"_id" : "vehicle9", "type" : "vehicle", "geometry" : { "type" : "point", "coordinates" : [-0.08990764617919922, 51.5212945726301 ]}},
 {"_id" : "vehicle10", "type" : "vehicle", "geometry" : { "type" : "point", "coordinates" : [-0.08475780487060547, 51.52537994003543]}},
-{"_id" : "vehicle11", "type" : "vehicle", "geometry" : { "type" : "point", "coordinates" : [-0.08065938949584961, 51.52513963445152]}}
+{"_id" : "vehicle11", "type" : "vehicle", "geometry" : { "type" : "point", "coordinates" : [-0.08065938949584961, 51.52513963445152]}},
+{"_id" : "John", "type" : "person", "attributes" : {"name" : "John Lennon", "job" : "driver"}},
+{"_id" : "Paul", "type" : "person", "attributes" : {"name" : "Paul McCartney", "job" : "medic"}},
+{"_id" : "George", "type" : "person", "attributes" : {"name" : "George Harrison", "job" : "medic"}},
+{"_id" : "Ringo", "type" : "person", "attributes" : {"name" : "Ringo Starr", "job" : "engineer"}}
 ]
 
 categories = [
