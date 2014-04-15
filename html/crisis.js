@@ -22,7 +22,8 @@ function CrisisCtrl($scope, $http, $timeout) {
     }
 
     $scope.save_changes = function(e) {
-       
+    	$scope.update($scope.selected);
+    	$("#popup").hide();
     }
 
     $scope.abandon_changes = function(e) {
@@ -163,8 +164,10 @@ function CrisisCtrl($scope, $http, $timeout) {
 						              asset.geometry.coordinates[0] = longLat.lng;
 						              asset.geometry.coordinates[1] = longLat.lat;
 						              $scope.update(asset);
-						});
-				// marker.bindToLabel('test label');
+						}).on('click', function(ev) {
+								$("#popup").show();
+							}
+						);
 				marker.addTo(m);
 			},
 			re_bindEvents : function() {
