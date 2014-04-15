@@ -152,7 +152,7 @@ if ($("#map-container").length > 0) {
         draggable: true,
         clickable: true
       }).on('dragend', function(ev) {
-        return console.log("coords", ev.target.getLatLng());
+        return console.log("coords", ev.target.getLatLng(), asset._id);
       }).addTo(m);
     },
     re_bindEvents: function() {
