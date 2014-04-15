@@ -126,7 +126,10 @@ if ($("#map-container").length > 0) {
     },
 
     categoryIcon: function(iconName, iconColor) {
-	    var iconDictionary = {}, faIcon;
+	    var iconDictionary = {
+				vehicle: 'truck'
+			},
+			faIcon;
 		faIcon = iconDictionary[iconName] || faIcon;
 	    return L.AwesomeMarkers.icon({
 	        icon: faIcon,
