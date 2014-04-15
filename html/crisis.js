@@ -1,6 +1,7 @@
 function CrisisCtrl($scope, $http, $timeout) {
     $scope.example = "hello";
     $scope.assets = [];
+    $scope.test="hi";
     var m, map, marker;
 
     $scope.callWS = function(e) {
@@ -13,9 +14,19 @@ function CrisisCtrl($scope, $http, $timeout) {
         })
     }
 
+
+    $scope.save_changes = function(e) {
+       
+    }
+
+    $scope.abandon_changes = function(e) {
+        $("#popup").hide();
+    }
+
 		$scope.getAssets = function(e) {
 			$http.get('/asset').success(function(data) {
 				$scope.assets = data.results;
+				$scope.selected = data.results[0];
 			  for (_i = 0, _len = $scope.assets.length; _i < _len; _i++) {
 					asset = $scope.assets[_i];
 					console.info(asset);
