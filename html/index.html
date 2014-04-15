@@ -1,1 +1,35 @@
-Hackathon 2014 !
+<!DOCTYPE html>
+<html ng-app>
+<head>
+<title>Crisis Manger</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"
+	type="text/javascript">
+</script>
+<script src="/static/crisis.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/static/crisis.css">
+</head>
+<body>
+	<div ng-controller="CrisisCtrl">
+
+	A Simple Variable: {{example}}
+
+	<button ng-click="clickMe();"> Press Here </button>	
+
+	<input ng-model="someInput"></input>
+	You Typed: {{someInput}}	
+
+	<button ng-click="callWS();"> Call Web Service </button>
+	{{result}}
+	
+	
+	<button ng-click="getAssets();"> Get Assets </button>
+	Assets:
+	<ul>
+	<li ng-repeat="asset in assets"> {{asset.Name}} </li>
+	</ul>
+	
+	
+	</div>
+</body>
+</html>

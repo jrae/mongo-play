@@ -12,6 +12,21 @@ connection_string = "mongodb://localhost:27017"
 connection = pymongo.MongoClient(connection_string)
 database = connection.mongosizer
 
+@post('/square')
+def square():
+    print request.json
+    number = request.json['aNumber']
+    return { 'result' : number*number}
+
+@route('/assets')
+def getAssets():
+    assets = [];
+    for v in xrange(1,5):
+        veh = { 'Name' : "Vehicle" + str(v) }
+        assets.append(veh)
+    print assets
+    return {'result': assets}
+
 @route('/ping')
 def ping():
     return {'hello':'world'}
@@ -28,4 +43,4 @@ def send_static(filename):
     return static_file(filename, root='./html')
 
 
-run(host='0.0.0.0', port=8080)
+run(host='0.0.0.0', port=8080, debug=True, reloader=True)
