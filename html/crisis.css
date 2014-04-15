@@ -1,0 +1,9 @@
+#inventory {
+	width 25%;
+	float: right;
+}
+
+#map {
+	width: 75%;
+	float: left;
+}
