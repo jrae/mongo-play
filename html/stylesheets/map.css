@@ -23,6 +23,11 @@ iframe {
     margin-right:10px;
 }
 
+.ui-content {
+	float: right;
+	width: 70%;
+}
+
 #map-container {
     width: 100%;
     height: 600px;

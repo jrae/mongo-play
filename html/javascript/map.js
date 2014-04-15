@@ -121,8 +121,8 @@ $(function() {
             iconUrl = "default";
         }
         icon = L.icon({
-          iconUrl: "<%= asset_path('" + iconUrl + ".png" + "') %>",
-          iconRetinaUrl: "<%= asset_path('" + iconUrl + "@2x.png" + "') %>",
+          iconUrl: "<%= asset_path('images/" + iconUrl + ".png" + "') %>",
+          iconRetinaUrl: "<%= asset_path('images/" + iconUrl + "@2x.png" + "') %>",
           iconSize: [40, 40]
         });
         return icon;
