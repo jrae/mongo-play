@@ -1,6 +1,7 @@
 function CrisisCtrl($scope, $http, $timeout) {
 	$scope.example = "hello";
 	$scope.assets = [];
+	var m, map, marker;
 
 	$scope.callWS = function(e)
 	{
@@ -13,12 +14,19 @@ function CrisisCtrl($scope, $http, $timeout) {
 
 	$scope.getAssets = function(e)
 	{
-		$http.get( '/assets').success(function(data) {
-			$scope.assets = data.result;
+		$http.get( '/asset').success(function(data) {
+			$scope.assets = data.results;
+			console.log($scope.assets);
+      for (_i = 0, _len = $scope.assets.length; _i < _len; _i++) {
+        asset = $scope.assets[_i];
+      	console.log(asset);
+        map.render_enquiry(asset);
+      }
 		})
 	}
 
-	var m, map, marker;
+if ($("#map-container").length > 0) {
+
 
   m = L.map('map-container', {
     detectRetina: true
@@ -132,27 +140,10 @@ function CrisisCtrl($scope, $http, $timeout) {
       _this = this;
 
       $scope.getAssets();
-      // url = "/search_enquiries" + _this.get_long_lat_params();
-      // return $.get(url, function(data) {
-      //   console.log(data);
-      //   _this.render_data(data);
-      //   return _this.re_bindEvents();
-      // });
     },
-    render_data: function(data) {
-      var enquiry, _i, _len, _results, _this;
-      _this = this;
-      _results = [];
-      for (_i = 0, _len = data.length; _i < _len; _i++) {
-        enquiry = data[_i];
-        _results.push(_this.render_enquiry(enquiry));
-      }
-      return _results;
-    },
-    render_enquiry: function(enquiry) {
+    render_enquiry: function(asset) {
       var _this;
       _this = this;
-      console.log(_this.categoryIcon(enquiry.category.name, 'red'));
       L.marker([enquiry.latitude, enquiry.longitude], {
         icon: _this.categoryIcon(enquiry.category.name, 'red'),
         draggable: true,
@@ -160,7 +151,6 @@ function CrisisCtrl($scope, $http, $timeout) {
       }).on('dragend', function(ev) {
         return console.log("coords", ev.target.getLatLng());
       }).addTo(m);
-      return $('#enquiries').html($('#enquiries').html() + "<div class=\"result\" id='" + enquiry.id + "'> <div class=\"result__icon cat-" + enquiry.category.id + "\"></div> <div class=\"result__details\"> <h3 class=\"result__type\">" + enquiry.category.name + "</h3> <p class=\"result__description\">" + enquiry.description + "</p> </div> </div>");
     },
     re_bindEvents: function() {
       return $('.result').each(function() {
@@ -179,6 +169,7 @@ function CrisisCtrl($scope, $http, $timeout) {
   };
 
 	map.init();
+}
 }
 
 
