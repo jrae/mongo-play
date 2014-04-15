@@ -16,10 +16,8 @@ function CrisisCtrl($scope, $http, $timeout) {
 	{
 		$http.get( '/asset').success(function(data) {
 			$scope.assets = data.results;
-			console.log($scope.assets);
       for (_i = 0, _len = $scope.assets.length; _i < _len; _i++) {
         asset = $scope.assets[_i];
-      	console.log(asset);
         map.render_enquiry(asset);
       }
 		})
@@ -127,7 +125,8 @@ if ($("#map-container").length > 0) {
 
     categoryIcon: function(iconName, iconColor) {
 	    var iconDictionary = {
-				vehicle: 'truck'
+				vehicle: 'truck',
+				person: 'male'
 			},
 			faIcon;
 		faIcon = iconDictionary[iconName] || faIcon;
@@ -152,7 +151,7 @@ if ($("#map-container").length > 0) {
         draggable: true,
         clickable: true
       }).on('dragend', function(ev) {
-        return console.log("coords", ev.target.getLatLng());
+        return console.log("coords", ev.target.getLatLng(), asset._id);
       }).addTo(m);
     },
     re_bindEvents: function() {
