@@ -29,7 +29,7 @@
   
   <body>
 	<div id="inventory" ng-controller="CrisisCtrl">
-
+<!-- 
 	A Simple Variable: {{example}}<br></br>
 
 	<button ng-click="clickMe();"> Press Here </button>	<br></br>
@@ -42,10 +42,18 @@
 	
 	
 	<button ng-click="getAssets();"> Get Assets </button>
-	Assets:
-	<ul>
-	<li ng-repeat="asset in assets"> {{asset.Name}} </li>
-	</ul>
+-->
+
+	<div class='asset' ng-repeat="asset in assets"> 
+	<div class="{{asset.status}}" >
+	<div class='asset'>
+	<div ng-repeat="(key,value) in asset">
+	 {{key}} : {{value}}
+	 </div>
+	</div>
+	</div>
+	 </div>
+
 	
 	
 	</div>

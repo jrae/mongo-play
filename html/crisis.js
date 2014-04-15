@@ -24,6 +24,7 @@ function CrisisCtrl($scope, $http, $timeout) {
 		})
 	}
 	
+	$scope.getAssets();
 }
 
 
