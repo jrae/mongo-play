@@ -146,18 +146,21 @@ function CrisisCtrl($scope, $http, $timeout) {
 			render_enquiry : function(asset) {
 				var _this;
 				_this = this;
-				L.marker(
+				var marker = L.marker(
 						[ asset.geometry.coordinates[1],
 								asset.geometry.coordinates[0] ], {
 							icon : _this.categoryIcon(asset.type, 'red'),
 							draggable : true,
 							clickable : true
-						}).on(
+						});
+				marker.on(
 						'dragend',
 						function(ev) {
 							return console.log("coords", ev.target.getLatLng(),
 									asset._id);
-						}).addTo(m);
+						});
+				marker.bindToLabel('test label');
+				marker.addTo(m);
 			},
 			re_bindEvents : function() {
 				return $('.result').each(function() {
