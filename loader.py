@@ -1,4 +1,5 @@
 import urllib2, json
+import random
 
 assets = [
 {"id" : "vehicle1", "type" : "vehicle", "geometry" : { "type" : "point", "coordinates" : [-0.08617401123046874, 51.52487262675978]}},
@@ -19,7 +20,16 @@ categories = [
     {"id" : "person", "icon" : {"name" : "person", "colour" : "red"}}
 ]
 
+vehno = 20
 for asset in assets:
+    attribs = {}
+    attribs['VehicleID'] = vehno
+    vehno = vehno + 1
+    attribs["Callsign"] = 'M' + str(random.randint(0,6)) +  chr(random.randint(1, 25) + 65)  + chr(random.randint(1, 25) + 65)   + chr(random.randint(1, 25) + 65)
+    attribs['Type'] = random.choice(['Landrover 110','Landrover 90','Mitsubishi Shogun','Jeep'])
+    attribs['Winch'] = random.choice(['Yes','No'])
+    asset['attributes'] = attribs
+    
     req = urllib2.Request("http://0.0.0.0:8080/asset", json.dumps(asset), {"Content-Type": "application/json"})
     res = urllib2.urlopen(req)
     assert res.getcode() == 201

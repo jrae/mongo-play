@@ -1,10 +1,13 @@
 #inventory {
-	width 25%;
+	width: 25%;
 	float: right;
+	background: white;
 }
 
 #map {
+	background:white;
 	width: 75%;
+	height: 100%;
 	float: left;
 }
 
@@ -14,7 +17,7 @@
 	padding: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	background: white;
+	background: #F0F0F0;
 	color: black;
 	#box-shadow:rgba(0,0,0,0.5) 0px 0px 5px; 
 }

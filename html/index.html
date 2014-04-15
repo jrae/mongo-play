@@ -45,8 +45,10 @@
 	<div class='asset' ng-repeat="asset in assets"> 
 	<div class="{{asset.status}}" >
 	<div class='asset'>
-	<div ng-repeat="(key,value) in asset">
+	<div ng-repeat="(key,value) in asset.attributes">
+	<span ng-if="key == 'Location'" >
 	 {{key}} : {{value}}
+	 <span>
 	 </div>
 	</div>
 	</div>
@@ -59,41 +61,15 @@
     </div>
     <div id="map" data-role="page">
 
-      <div data-role="popup" id="popupPanel" data-corners="false" data-theme="none" data-shadow="false" data-tolerance="0,0" align='center'>
-          <a href="#test" data-theme="a" data-role="button", data-icon="back" data-mini="true">Back</a>
-          <br>&nbsp;<br>
-          <button data-theme="a" data-role="button", data-icon="back" data-mini="true">Save to Server</button>
-          <br>
-          <label for="username" class="ui-hidden-accessible">Username:</label>
-          <input type="text" name="username" id="username" value="" style="width:90%" placeholder="Username (optinoal)"/>
-          <label for="select-choice-min"  style="width:90%" class="ui-hidden-accessible">Shipping method:</label>
-          <select name="select-choice-min" id="select-choice-min" data-mini="true" >
-              <option value="standard">Critical</option>
-              <option value="rush">Important</option>
-              <option value="express">General</option>
-              <option value="overnight">Later On</option>
-          </select>
-          <label for="comments" class="ui-hidden-accessible">Comments:</label>
-          <textarea name="comments" id="comments" placeholder="Comments" style="width:90%;height:30%"></textarea>
-      </div>
 
-      <div data-role="popup" id="popupBasic">
-          <p>This is a completely basic popup, no options set.<p>
-      </div>
+     
       <div data-role="header" id="header", data-position='fixed' data-tap-toggle="false">
-        <h1>
-          JQuery Mobile and Leaflet Demo
-        </h1>
+        
       </div>
       <div data-role="content" style="padding:0px;">
         <div id="map-container"></div>
       </div>
-      <div data-role="footer" class="ui-bar" data-position='fixed' data-tap-toggle="false">
-        <button data-role="button" data-icon="check" id='nightmode'>NightMode</button>
-        <button data-role="button" data-icon="check" id='panelbutton'>panelbutton</button>
-        <a href="#popupPanel"  data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">Open panel</a>
-
-      </div>
+     
     </div> <!-- page -->
 
   </body>
