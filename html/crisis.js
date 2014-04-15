@@ -14,7 +14,7 @@ function CrisisCtrl($scope, $http, $timeout) {
         })
     }
 
-    
+
 
     $scope.select_asset = function(asset) {
        $scope.selected = asset;
@@ -33,7 +33,6 @@ function CrisisCtrl($scope, $http, $timeout) {
 		$scope.getAssets = function(e) {
 			$http.get('/asset').success(function(data) {
 				$scope.assets = data.results;
-				$scope.selected = data.results[0];
 			  for (_i = 0, _len = $scope.assets.length; _i < _len; _i++) {
 					asset = $scope.assets[_i];
 					console.info(asset);
@@ -165,6 +164,7 @@ function CrisisCtrl($scope, $http, $timeout) {
 						              asset.geometry.coordinates[1] = longLat.lat;
 						              $scope.update(asset);
 						}).on('click', function(ev) {
+								$scope.selected = asset;
 								$("#popup").show();
 							}
 						);
