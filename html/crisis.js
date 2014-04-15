@@ -16,10 +16,11 @@ function CrisisCtrl($scope, $http, $timeout) {
 	{
 		$http.get( '/asset').success(function(data) {
 			$scope.assets = data.results;
-      for (_i = 0, _len = $scope.assets.length; _i < _len; _i++) {
-        asset = $scope.assets[_i];
-        map.render_enquiry(asset);
-      }
+	  for (_i = 0, _len = $scope.assets.length; _i < _len; _i++) {
+		asset = $scope.assets[_i];
+		console.info(asset);
+		map.render_enquiry(asset);
+	  }
 		})
 	}
 
@@ -128,11 +129,17 @@ if ($("#map-container").length > 0) {
 				vehicle: 'truck',
 				person: 'male'
 			},
-			faIcon;
+			colorDictionary = {
+				vehicle: 'blue',
+				person: 'red'
+			},
+			faIcon,
+			markerColor;
 		faIcon = iconDictionary[iconName] || faIcon;
+		markerColor = colorDictionary[iconName] || iconColor;
 	    return L.AwesomeMarkers.icon({
 	        icon: faIcon,
-	        markerColor: iconColor,
+	        markerColor: markerColor,
 	        prefix: 'fa'
 	    });
 	},
