@@ -14,7 +14,13 @@ assets = [
 {"type" : "vehicle", "geometry" : { "type" : "point", "coordinates" : [-0.08065938949584961, 51.52513963445152]}}
 ]
 
+vehno = 20
 for asset in assets:
+    attribs = {}
+    attribs['VehicleID'] = vehno
+    vehno = vehno + 1
+    attribs["Callsign"] = 'M6TTL'
+    asset['attributes'] = attribs
     req = urllib2.Request("http://0.0.0.0:8080/asset", json.dumps(asset), {"Content-Type": "application/json"})
     res = urllib2.urlopen(req)
     assert res.getcode() == 201

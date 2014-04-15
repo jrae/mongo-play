@@ -2,6 +2,10 @@ iframe {
     border: none;
 }
 
+body,html {
+	height: 100%;
+}
+
 #popupPanel-popup {
     right: 0 !important;
     left: auto !important;
@@ -14,10 +18,14 @@ iframe {
     margin: -1px 0;
 }
 #popupPanel .ui-btn {
+	hidden: true;
     margin-left: 10px;
     margin-right:10px;
 }
 #popupPanel .ui-intput-text {
+	hidden:true;
+	
+	
     width: 200px;
     margin-left: 10px;
     margin-right:10px;
@@ -25,5 +33,5 @@ iframe {
 
 #map-container {
     width: 100%;
-    height: 600px;
+    height:  800px;
 }
