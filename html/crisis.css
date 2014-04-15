@@ -1,7 +1,9 @@
 #inventory {
 	width: 25%;
+	height: 100%;
 	float: right;
 	background: white;
+	overflow-y: scroll;
 }
 
 #map {
@@ -22,10 +24,10 @@
 	#box-shadow:rgba(0,0,0,0.5) 0px 0px 5px; 
 }
 
-.tasked {
+.Tasked {
 	background: orange;
 }
 
-.free { background: green }
+.Available { background: green }
 
-.issue { background: red }
+.OOC { background: red }

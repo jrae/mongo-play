@@ -46,7 +46,7 @@ def query_index():
 
 @get('/asset')
 def asset_search():
-    response.body = dumps({"results" : [render_asset(record) for record in database.asset.find(dict(request.query))] })
+    response.body = dumps({"results" : [render_asset(record) for record in database.asset.find(dict(request.query)).sort([("attributes.Status",pymongo.ASCENDING)] })
     response.content_type = "application/json"
     return response
 
@@ -57,6 +57,14 @@ def get_asset(id):
     return response
 
 @post('/asset')
+def asset_create():
+    asset = request.json
+    database.asset.update({"_id" : asset['_id']}, asset, upsert=True)
+    response.set_header('Location', "/asset/%s" % asset['_id'])
+    response.status = 201
+    return response
+
+@post('/update_asset')
 def asset_create():
     asset = request.json
     database.asset.update({"_id" : asset['_id']}, asset, upsert=True)
