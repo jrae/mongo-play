@@ -130,7 +130,7 @@ if ($("#map-container").length > 0) {
 		faIcon = iconDictionary[iconName] || faIcon;
 	    return L.AwesomeMarkers.icon({
 	        icon: faIcon,
-	        markerColor: markerColor,
+	        markerColor: iconColor,
 	        prefix: 'fa'
 	    });
 	},
@@ -144,8 +144,8 @@ if ($("#map-container").length > 0) {
     render_enquiry: function(asset) {
       var _this;
       _this = this;
-      L.marker([enquiry.latitude, enquiry.longitude], {
-        icon: _this.categoryIcon(enquiry.category.name, 'red'),
+      L.marker([asset.geometry.coordinates[1], asset.geometry.coordinates[0]], {
+        icon: _this.categoryIcon(asset.type, 'red'),
         draggable: true,
         clickable: true
       }).on('dragend', function(ev) {
