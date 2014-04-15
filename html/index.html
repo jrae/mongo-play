@@ -61,7 +61,7 @@
 -->
    
     
-	<div class='asset' ng-repeat="asset in assets">
+	<div ng-click="select_asset(asset)" class='asset' ng-repeat="asset in assets">
 	<div class="{{asset.attributes.Status}}" >
 	<div class='asset'>
      <div class="icons">
@@ -69,11 +69,8 @@
      <span class="flag" ng-if="value" >{{key}}</span>
      </div>
 	<div ng-repeat="(key,value) in asset.attributes">
-
 	 {{key}} : {{value}}
-
 	 </div>
-    
 	</div>
 	</div>
 	 </div>
@@ -84,16 +81,11 @@
 
     </div>
     <div id="map" data-role="page">
-
-
-
       <div data-role="header" id="header", data-position='fixed' data-tap-toggle="false">
-
       </div>
       <div data-role="content" style="padding:0px;">
         <div id="map-container"></div>
       </div>
-
     </div> <!-- page -->
 
   </body>

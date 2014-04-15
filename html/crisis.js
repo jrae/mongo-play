@@ -14,6 +14,12 @@ function CrisisCtrl($scope, $http, $timeout) {
         })
     }
 
+    
+
+    $scope.select_asset = function(asset) {
+       $scope.selected = asset;
+       $("#popup").show();
+    }
 
     $scope.save_changes = function(e) {
        
