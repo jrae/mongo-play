@@ -37,8 +37,9 @@ for asset in assets:
         if random.randint(1,3) == 1:
             flags['Question?']=True;
     asset['attributes'] = attribs
+
     asset['flags'] = flags
-    
+
     req = urllib2.Request("http://0.0.0.0:8080/asset", json.dumps(asset), {"Content-Type": "application/json"})
     res = urllib2.urlopen(req)
     assert res.getcode() == 201

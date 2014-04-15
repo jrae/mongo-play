@@ -64,6 +64,14 @@ def asset_create():
     response.status = 201
     return response
 
+@post('/update_asset')
+def asset_create():
+    asset = request.json
+    database.asset.update({"_id" : asset['_id']}, asset, upsert=True)
+    response.set_header('Location', "/asset/%s" % asset['_id'])
+    response.status = 201
+    return response
+
 @post("/category")
 def category_create():
     category = request.json
