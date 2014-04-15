@@ -184,7 +184,6 @@ function CrisisCtrl($scope, $http, $timeout) {
 	      });
 	    }
 	  };
-	  
 		map.init();
 	}
 }
