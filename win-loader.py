@@ -30,11 +30,11 @@ for asset in assets:
     attribs['Winch'] = random.choice(['Yes','No'])
     asset['attributes'] = attribs
     
-    req = urllib2.Request("http://0.0.0.0:8080/asset", json.dumps(asset), {"Content-Type": "application/json"})
+    req = urllib2.Request("http://127.0.0.1:8080/asset", json.dumps(asset), {"Content-Type": "application/json"})
     res = urllib2.urlopen(req)
     assert res.getcode() == 201
 
 for cat in categories:
-    req = urllib2.Request("http://0.0.0.0:8080/category", json.dumps(cat), {"Content-Type": "application/json"})
+    req = urllib2.Request("http://127.0.0.1:8080/category", json.dumps(cat), {"Content-Type": "application/json"})
     res = urllib2.urlopen(req)
     assert res.getcode() == 201
