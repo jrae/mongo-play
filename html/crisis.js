@@ -125,38 +125,19 @@ if ($("#map-container").length > 0) {
       return "?lat=" + latitude + "&long=" + longitude;
     },
 
-    categoryIcon: function(category) {
-      var icon, iconUrl;
-      iconUrl = null;
-      switch (category) {
-        case "Tree(s) Down":
-          iconUrl = "tree";
-          break;
-        case "Floods":
-          iconUrl = "flooding";
-          break;
-        case "Ice And Snow":
-          iconUrl = "ice";
-          break;
-        case "Obstruction":
-          iconUrl = "obstruction";
-          break;
-        case "Damaged Highway":
-          iconUrl = "highway";
-          break;
-        case "Potholes":
-          iconUrl = "pothole";
-          break;
-        default:
-          iconUrl = "default";
-      }
-      icon = L.icon({
-        iconUrl: "<%= asset_path('" + iconUrl + ".png" + "') %>",
-        iconRetinaUrl: "<%= asset_path('" + iconUrl + "@2x.png" + "') %>",
-        iconSize: [40, 40]
-      });
-      return icon;
-    },
+    categoryIcon: function(iconName, iconColor) {
+	    var iconDictionary = {
+				vehicle: 'truck'
+			},
+			faIcon;
+		faIcon = iconDictionary[iconName] || faIcon;
+	    return L.AwesomeMarkers.icon({
+	        icon: faIcon,
+	        markerColor: iconColor,
+	        prefix: 'fa'
+	    });
+	},
+
     request_local_enquiries: function() {
       var url, _this;
       _this = this;
@@ -166,10 +147,8 @@ if ($("#map-container").length > 0) {
     render_enquiry: function(asset) {
       var _this;
       _this = this;
-
-      // console.log(_this.categoryIcon(asset.Name));
       L.marker([asset.geometry.coordinates[1], asset.geometry.coordinates[0]], {
-        // icon: _this.categoryIcon(asset.Name),
+        icon: _this.categoryIcon(asset.type, 'red'),
         draggable: true,
         clickable: true
       }).on('dragend', function(ev) {
@@ -194,7 +173,6 @@ if ($("#map-container").length > 0) {
 
 	map.init();
 }
-
 }
 
 
