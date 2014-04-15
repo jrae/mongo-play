@@ -3,7 +3,7 @@ from bson.json_util import dumps
 import json
 import  re
 import pymongo
-from bottle import run,route,static_file,request,get,post
+from bottle import run,route,static_file,request,get,post, response
 
 
 #Connect to local mongoDB
@@ -21,6 +21,18 @@ def ping():
 def query_index():
     return static_file('index.html',root='./html')
 
+@get('/asset')
+def asset_search():
+    return database.asset.find(dict(request.query))
+
+@post('/asset')
+def asset_create():
+    asset = request.json
+    database.asset.insert(asset)
+    response.set_header('Location', "/asset/%s" % asset['_id'])
+    response.status = 201
+    return response
+
 #Anything in html directory send as is
 
 @route('/static/<filename:path>')
@@ -28,4 +40,4 @@ def send_static(filename):
     return static_file(filename, root='./html')
 
 
-run(host='0.0.0.0', port=8080)
+run(host='0.0.0.0', port=8080, debug=True, reloader=True)
