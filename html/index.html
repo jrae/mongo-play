@@ -43,7 +43,7 @@
 -->
 
 	<div class='asset' ng-repeat="asset in assets"> 
-	<div class="{{asset.status}}" >
+	<div class="{{asset.attributes.Status}}" >
 	<div class='asset'>
 	<div ng-repeat="(key,value) in asset.attributes">
 	<span ng-if="key == 'Location'" >
