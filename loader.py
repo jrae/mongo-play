@@ -28,7 +28,7 @@ for asset in assets:
     attribs["Callsign"] = 'M' + str(random.randint(0,6)) +  chr(random.randint(1, 25) + 65)  + chr(random.randint(1, 25) + 65)   + chr(random.randint(1, 25) + 65)
     attribs['Type'] = random.choice(['Landrover 110','Landrover 90','Mitsubishi Shogun','Jeep'])
     attribs['Winch'] = random.choice(['Yes','No'])
-    attribs['Status'] = random.choice(['Tasked','Available','OOC'])
+    attribs['Status'] = random.choice(['Available','Tasked','Unserviceable'])
     if(attribs['Status'] == 'Tasked'):
         attribs['TaskedUntil'] = random.choice(['12:00','12:30','12:45','13:00','13:15'])
     asset['attributes'] = attribs

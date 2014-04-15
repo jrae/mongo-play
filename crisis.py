@@ -46,7 +46,7 @@ def query_index():
 
 @get('/asset')
 def asset_search():
-    response.body = dumps({"results" : [dict(record) for record in database.asset.find(dict(request.query))] })
+    response.body = dumps({"results" : [dict(record) for record in database.asset.find(dict(request.query)).sort([("attributes.Status",pymongo.ASCENDING)])] })
     response.content_type = "application/json"
     return response
 
